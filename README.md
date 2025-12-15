@@ -1,56 +1,31 @@
-# 1. create project
-composer create-project laravel/laravel="10.10" rbac_app
-cd rbac_app
+Project Setup (Step by Step)
 
-# 2. env & key
-cp .env.example .env
-php artisan key:generate
-# edit .env DB_* values
+1. Download or clone the project
 
-# 3. install Breeze for auth (Blade)
-composer require laravel/breeze --dev
-php artisan breeze:install blade
+2. git clone:-     https://github.com/Bikramsinghrana/rbac_rana.git
+cd project-folder
+
+
+3. Install PHP dependencies
+
+composer update
+Install Node dependencies
 npm install
-npm run dev
 
-# 4. migrate DB
-php artisan migrate
 
-# 5. install spatie
-composer require spatie/laravel-permission
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
-php artisan migrate
+4. Create environment file
+cp .env.example .env
 
-# 6. create project model/controller/factory
-php artisan make:model Project -m -f -c
+Update the database and other environment variables in the .env file.
+Generate application key
 
-# 7. seed roles/permissions
-php artisan make:seeder RolePermissionSeeder
+5.php artisan key:generate
 
-# 8. make admin controllers
-php artisan make:controller Admin/AdminDashboardController
-php artisan make:controller Admin/UserController --resource
-php artisan make:controller Admin/RoleController --resource
-php artisan make:controller Admin/PermissionController --resource
-php artisan make:controller ProjectController --resource
+Ensure database service is running
+Start MySQL/PostgreSQL before proceeding.
 
-# 9. migrate & seed
-php artisan migrate
-php artisan db:seed --class=RolePermissionSeeder
+6.Run database migrations
+php artisan migrate --seed
 
-# 10. run server
+(For development url)
 php artisan serve
-
-
-
-Task 2: Role-Based Access Control (RBAC) Admin Panel
-
-Requirements:
-
-Create an admin panel for managing users and roles.
-
-Admin can assign roles and permissions dynamically.
-
-Middleware should restrict pages based on roles.
-
-Optional: Add basic CRUD for “Projects” accessible only to users with project-manager role.
