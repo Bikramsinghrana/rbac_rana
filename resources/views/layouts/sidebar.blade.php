@@ -44,7 +44,7 @@
         @role('project-manager|user')
             @can('project.view')
                 <li class="nav-item">
-                    <a href="{{ route('projects.dashboard') }}"
+                    <a href="{{ route('projects.index') }}"
                     class="nav-link {{ request()->routeIs('projects.*') ? 'active' : 'text-white' }}">
                         Projects
                     </a>
